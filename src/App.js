@@ -1,37 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
-import './Box.js';
-import Box from './Box';
+import React, { useState } from 'react';
+//mock data
+import data from "./data.json";
+//components
+import Header from "./Header";
+import ToDoList from "./ToDoList";
+import ToDoForm from './ToDoForm';
 
 function App() {
-  const elements = ['one', 'two', 'three', 'four'];
+  
+  const [ toDoList, setToDoList ] = useState(data);
+
+  const handleToggle = (id) => {
+    let mapped = toDoList.map(task => {
+      return task.id === Number(id) ? { ...task, complete: !task.complete } : { ...task};
+    });
+    setToDoList(mapped);
+  }
+
+  const handleFilter = () => {
+    let filtered = toDoList.filter(task => {
+      return !task.complete;
+    });
+    setToDoList(filtered);
+  }
+
+  const addTask = (userInput ) => {
+    let copy = [...toDoList];
+    copy = [...copy, { id: toDoList.length + 1, task: userInput, complete: false }];
+    setToDoList(copy);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>To Do List</h1>
-        
-  
-    <ul style={{}}>
-      
-      {elements.map((value, index) => {
-        return <Box key={index} value={value}></Box>
-      })}
-      
-    
-    </ul>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <ToDoList toDoList={toDoList} handleToggle={handleToggle} handleFilter={handleFilter}/>
+      <ToDoForm addTask={addTask}/>
     </div>
   );
 }
