@@ -33,8 +33,8 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <ToDoList toDoList={toDoList} handleToggle={handleToggle} handleFilter={handleFilter}/>
-      <ToDoForm addTask={addTask}/>
+      <ToDoList classname="ToDoList" toDoList={toDoList} handleToggle={handleToggle} handleFilter={handleFilter}/>
+      <ToDoForm classname="ToDoForm" addTask={addTask}/>
     </div>
   );
 }

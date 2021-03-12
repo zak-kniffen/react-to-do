@@ -18,3 +18,27 @@ code {
 .strike {
   text-decoration: line-through;
 }
+.App{
+  margin: auto;
+  width: 50%;
+  
+}
+Header{
+  margin:auto;
+  width: 50%;
+}
+.ToDoForm{
+  margin:auto;
+  width: 50%;
+}
+.Header{
+  margin:auto;
+  width: 50%;
+}
+.Todo{
+  margin:auto;
+  width: 50%;
+}
+
+
+
